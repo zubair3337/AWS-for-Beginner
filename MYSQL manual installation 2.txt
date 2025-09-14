@@ -1,0 +1,84 @@
+
+
+================= Mysql =====================
+Prerequisites
+Amazon linux (ami-06ebb7936bfa62864) Amazon Linux 2 AMI (HVM)-kernel 5.10,
+
+================================================
+How to install mysql ?
+
+# yum update -y
+# yum install wget -y
+
+Https://repo.mysql.com (download the rpm matching with our OS. Eg: el7-5
+Copy the download link
+
+In linux terminal use following command
+
+#wget "url"
+
+For installation 
+
+#yum install https://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm -y
+
+#yum install mysql-server -y(to install package)
+
+After installation we can start mysql
+
+# systemctl start mysqld
+# systemctl enable mysqld
+# systemctl status mysqld
+
+
+================================================
+
+How to connect with mysql ?
+
+#mysql -u root (after this command you will get mysql> prompt in terminal)
+
+mysql> show databases; (to check available database)
+mysql> quit (to exit)
+
+How to set root user password ?
+
+# mysql_secure_installation
+Set root password ? Y
+New password
+Re type new password
+Remove anonymous user : Y
+All option : y
+
+Now login with root user & password 
+
+# mysql -u root -p
+mysql> (successfully login )
+
+
+================== creating table ===============================
+
+
+Mysql > show databases; (to check available databases)
+
+Mysql > create database userlogin; (to create new database, database name is "userlogin;")
+Query ok, 1 row affected
+
+Mysql > show databases; (to check available databases)
+
+Mysql > use userlogin; (to use created database)
+Database changed
+
+Mysql > show tables; (to check tables)
+Empty set
+
+Mysql > create table student(name varchar(50),rollnumber int(10), brach varchar(10)); (to create rows & columns in a table using DDL command)
+Query ok, 0 rows affected
+
+Mysql > desc student; (to describe created table)
+Reply in column table formate
+
+Mysql > insert into student values('Zubair',001,'IT'); (its direct method, data insert into columns in proper formate name, roolnumber, brach) always varchar in '' single quote & inter in normal, after each value "," will be use)
+Query ok 1 row affected
+
+Mysql > insert into student(brach, name,rollnumber)values('cs','tom',001); (it is a secure method)
+
+Mysql > SELECT * FROM student; (to check inserted data in the student table)

@@ -1,0 +1,24 @@
+Linux AMI example
+
+#!/bin/bash
+yum update –y
+yum install -y httpd
+service httpd start
+chkconfig httpd on
+
+
+
+Windows AMI example
+
+<powershell>
+Install-WindowsFeature –Name Web-Server 
+</powershell>
+
+
+
+#!/bin/bash
+yum -y install httpd
+systemctl enable httpd
+systemctl start httpd
+echo '<html><h1>Hello From Your Web Server!</h1></html>' > /var/www/html/index.html
+

@@ -1,0 +1,23 @@
+
+
+Step to install web server in Windows server and Linux server.
+
+=============== Windows server 2016 base ====================
+
+Step 1 - open server manager ----> and add one role with the name of "web server - IIS"
+
+after installation go to home directory of IIS web server i.e. C:/user/intpub/wwwroot or go to "tool" option in server manager, and select your server go to "sites" option, right click on "default web site" and select "explore" option same directory will open add your files and website will ready with your customize data / templets. 
+============================================================
+
+================= Amazon Linux Server ======================
+
+login to the Linux server using "putty" or "cmd" or in AWS dashboard click on "connect" and "ec2 connect " option.
+after successfully login kindly run following command to install and configure "httpd" web server.
+
+#sudo su (convert standard"$" user to root "#" user)
+#yum update -y (updating the server with todays date)
+# yum install httpd -y (to install httpd web server)
+#systemctl status httpd (to check status of the web server)
+#systemctl start httpd (start web server)
+
+===========================================================

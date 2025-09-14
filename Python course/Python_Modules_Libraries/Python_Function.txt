@@ -1,0 +1,15 @@
+---Python Function---
+
+in python function is a reusable block of code aht perform a specific
+task.
+
+You can define a funciton using a "def" keyword followed by name & 
+Parentheses (Which can include parameters and a colon.)
+
+Syntax:
+	def function_name (parameters):
+		function body
+	     return value 
+
+- build-in function : print(),open(), sum(), etc
+- user define function: def function_name

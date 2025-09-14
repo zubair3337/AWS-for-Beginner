@@ -1,0 +1,12 @@
+--- JSON ---
+- used to store a data in the form of "text".Storing and exchanging data.
+- easily send a receive data from broswer to server or server to broswer
+
+- its not a programing language. it a file formate or data formate
+to send or receive data
+
+- start and end with braces {}
+- key field are include in teh double quites.
+- values are represented by putting ":" colon between them & the key
+- JSON key-value pairs are separated by a "," comma.
+- value can be of any data type like string, integer, boolean etc

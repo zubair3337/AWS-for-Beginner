@@ -1,0 +1,114 @@
+
+
+============================== CLI ===========================
+
+# list all user's info
+aws iam list-users
+
+# list all user's usernames
+aws iam list-users --output text | cut -f 6
+
+# list current user's info
+aws iam get-user
+
+# list current user's access keys
+aws iam list-access-keys
+
+# crate new user
+aws iam create-user \
+    --user-name aws-admin2
+
+# create multiple new users, from a file
+allUsers=$(cat ./user-names.txt)
+for userName in $allUsers; do
+    aws iam create-user \
+        --user-name $userName
+
+================================================================
+
+# list all users
+aws iam list-users --no-paginate
+
+# get a specific user's info
+aws iam get-user \
+    --user-name aws-admin2
+
+# delete one user
+aws iam delete-user \
+    --user-name aws-admin2
+
+# delete all users
+# allUsers=$(aws iam list-users --output text | cut -f 6);
+allUsers=$(cat ./user-names.txt)
+for userName in $allUsers; do
+    aws iam delete-user \
+        --user-name $userName
+================================================================
+
+============================= S3 ===============================
+
+# list existing S3 buckets
+aws s3 ls
+
+# create a bucket name, using the current date timestamp
+bucket_name=test_$(date "+%Y-%m-%d_%H-%M-%S")
+echo $bucket_name
+
+# create a public facing bucket
+aws s3api create-bucket --acl "public-read-write" --bucket $bucket_name
+
+# verify bucket was created
+aws s3 ls | grep $bucket_name
+
+# check for public facing s3 buckets (should show the bucket name you created)
+
+aws s3api list-buckets --query 'Buckets[*].[Name]' --output text | xargs -I {} bash -c 'if [[ $(aws s3api get-bucket-acl --bucket {} --query '"'"'Grants[?Grantee.URI==`http://acs.amazonaws.com/groups/global/AllUsers` && Permission==`READ`]'"'"' --output text) ]]; then echo {} ; fi'
+
+# check for public facing s3 buckets, updated them to be private
+
+aws s3api list-buckets --query 'Buckets[*].[Name]' --output text | xargs -I {} bash -c 'if [[ $(aws s3api get-bucket-acl --bucket {} --query '"'"'Grants[?Grantee.URI==`http://acs.amazonaws.com/groups/global/AllUsers` && Permission==`READ`]'"'"' --output text) ]]; then aws s3api put-bucket-acl --acl "private" --bucket {} ; fi'
+
+# check for public facing s3 buckets (should be empty)
+
+aws s3api list-buckets --query 'Buckets[*].[Name]' --output text | xargs -I {} bash -c 'if [[ $(aws s3api get-bucket-acl --bucket {} --query '"'"'Grants[?Grantee.URI==`http://acs.amazonaws.com/groups/global/AllUsers` && Permission==`READ`]'"'"' --output text) ]]; then echo {} ; fi'
+
+================================================================
+
+=============================== EC2 ============================
+
+# list all instances (running, and not running)
+# http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html
+aws ec2 describe-instances
+
+# list all instances running
+aws ec2 describe-instances --filters Name=instance-state-name,Values=running
+
+# create a new instance
+# http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html
+aws ec2 run-instances \
+    --image-id ami-f0e7d19a \	
+    --instance-type t2.micro \
+    --security-group-ids sg-00000000 \
+    --dry-run
+
+# stop an instance
+# http://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html
+aws ec2 terminate-instances \
+    --instance-ids <instance_id>
+
+# list status of all instances
+# http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html
+aws ec2 describe-instance-status
+
+# list status of a specific instance
+aws ec2 describe-instance-status \
+    --instance-ids <instance_id>
+    
+# list all running instance, Name tag and Public IP Address
+aws ec2 describe-instances \
+  --filters Name=instance-state-name,Values=running \
+  --query 'Reservations[].Instances[].[PublicIpAddress, Tags[?Key==`Name`].Value | [0] ]' \
+  --output text | sort -k2
+
+
+==============================================================

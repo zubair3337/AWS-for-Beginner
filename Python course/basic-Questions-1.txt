@@ -1,0 +1,124 @@
+	===============
+
+Q-1 : 1. Create and Access a List
+Question: Write a Python program to create a list of 5 fruits and print the second fruit in the list.
+
+--------- ans -------------
+
+# Create a list of fruits
+fruits = ["apple", "banana", "cherry", "mango", "orange"]
+
+# Print the second fruit
+print("The second fruit is:", fruits[1])
+
+=================================
+
+Q-2 : modify a list : Question: Write a Python program to change the third fruit in the list to "grape" and print the updated list.
+
+------------- Answer -----------------
+
+# Original list
+fruits = ["apple", "banana", "cherry", "mango", "orange"]
+
+# Modify the third fruit
+fruits[2] = "grape"
+
+# Print the updated list
+print("Updated list:", fruits)
+
+
+=================================
+
+
+Q -3 : Question: Write a Python program to check and print the data type of the following variables:
+
+fruits = ["apple", "banana", "cherry"]
+numbers = (1, 2, 3)
+value = 42
+
+-------- answer --------------------
+
+# Variables
+fruits = ["apple", "banana", "cherry"]
+numbers = (1, 2, 3)
+value = 42
+
+# Print data types
+print("Data type of fruits:", type(fruits))
+print("Data type of numbers:", type(numbers))
+print("Data type of value:", type(value))
+
+===================================
+
+Q - 4 : iterate Through a Tuple
+Question: Write a Python program to iterate through a tuple of names and print each name.
+
+----------- ans ----------------
+
+# Create a tuple of names
+names = ("Alice", "Bob", "Charlie")
+
+# Iterate through the tuple
+for name in names:
+    print(name)
+
+==============================
+
+Q - 5 : Task: Take a user's name as input and print a greeting message.
+
+------------ ans ------------
+
+# Taking input from the user
+name = input("Enter your name: ")
+
+# Printing the greeting message
+print("Hello, " + name + "! Welcome!")
+
+===================================
+
+Q - 6 : Task: Take two numbers as input, add them, and print the result.
+
+---------- ans -----------------
+
+# Taking input from the user and converting to integers
+num1 = int(input("Enter the first number: "))
+num2 = int(input("Enter the second number: "))
+
+# Adding the two numbers
+result = num1 + num2
+
+# Printing the result
+print("The sum is:", result)
+
+=================================
+
+Q - 7 : Function to Greet the User
+Task: Write a function that takes a user's name as input and prints a greeting.
+
+--------- ans -----------------
+
+def greet_user():
+    name = input("Enter your name: ")
+    print("Hello, " + name + "! Welcome!")
+
+# Call the function
+greet_user()
+
+===============================
+
+Q -8 : Function to Check If a Number Is Even
+Task: Write a function to take a number as input and check if it is even.
+
+-------- ans -------------------
+
+def is_even():
+    num = int(input("Enter a number: "))
+    if num % 2 == 0:
+        print(num, "is even.")
+    else:
+        print(num, "is odd.")
+
+# Call the function
+is_even()
+
+===========================
